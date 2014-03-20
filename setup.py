@@ -24,6 +24,7 @@ setup(
     ],
     install_requires=[
         'gntp',
+        'PyRSS2Gen',
         ],
     entry_points={
         'console_scripts': [
