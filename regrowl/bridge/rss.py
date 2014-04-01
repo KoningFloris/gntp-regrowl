@@ -16,6 +16,7 @@ import SimpleHTTPServer
 import SocketServer
 import datetime
 import PyRSS2Gen as PyRSS2Gen
+import time
 
 from regrowl.regrowler import ReGrowler
 
@@ -54,7 +55,7 @@ class RssNotifier(ReGrowler):
 				 title = packetInfo[0]+" "+packetInfo[3],
 				 link = "http://localhost:8000/",
 				 description = packetInfo[2]+" --> "+packetInfo[1],
-				 guid = PyRSS2Gen.Guid("http://localhost:8000/"+packetInfo[0]+str(count)),
+				 guid = PyRSS2Gen.Guid("http://localhost:8000/"+packetInfo[0]+str(time.time())),
 				 pubDate = datetime.datetime(2014, 9, 6, 21, 49)),)
 		rss = PyRSS2Gen.RSS2(
 		title = "Growl notifications feed",
