@@ -55,7 +55,7 @@ class RssNotifier(ReGrowler):
 				 title = packetInfo[0]+" "+packetInfo[3],
 				 link = "http://localhost:8000/",
 				 description = packetInfo[2]+" "+packetInfo[4]+" --> "+packetInfo[1],
-				 guid = PyRSS2Gen.Guid("http://localhost:8000/"+packetInfo[0]+str(time.time())),
+				 guid = PyRSS2Gen.Guid("http://localhost:8000/"+packetInfo[0]+packetInfo[5]),
 				 pubDate = datetime.datetime(2014, 9, 6, 21, 49)),)
 		rss = PyRSS2Gen.RSS2(
 		title = "Growl notifications feed",
@@ -72,6 +72,7 @@ class RssNotifier(ReGrowler):
         fullPacket += ","+" "
         fullPacket += ","+" "
         fullPacket += ","+" "
+        fullPacket += ","+" "
         global packetList
         packetList.append(fullPacket)
         self.writeRss()
@@ -83,6 +84,7 @@ class RssNotifier(ReGrowler):
         fullPacket += ","+packet.headers['Notification-Title']
         fullPacket += ","+packet.headers['Notification-Name']
         fullPacket += ","+packet.headers['Notification-Text']
+        fullPacket += ","+str(time.time())
         global packetList
         packetList.append(fullPacket)
         self.writeRss()
